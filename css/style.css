@@ -1,0 +1,306 @@
+/*some default styles for consistency */
+body,
+h1,
+h2,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* background color and font for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b4a42;
+}
+
+
+/* navbar */
+/*.navbar {
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    text-align: center;
+}*/
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    text-align: center;
+}
+
+/*.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}*/
+
+/* navbar links */
+.navbar li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-align: center;
+    /*border-radius: 5px;
+    transition: background-color 0.3s ease;*/
+}
+
+.navbar li a:hover {
+    background-color: #2d6455;
+}
+
+/* "Logout" button  */
+.navbar ul li:last-child a {
+    background-color: #ff5555;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li:last-child a:hover {
+    background-color: #dd3333;
+}
+
+.navbar ul li:last-child {
+    margin-right: 0;
+}
+
+/* header area */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 60px 0 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Active link style */
+.active {
+    background-color: #555;
+}
+
+/* page content container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.wrapper h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.wrapper .items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.wrapper .items li {
+    width: calc(33.33% - 20px);
+    margin: 0 0 20px;
+    padding: 0;
+    text-align: center;
+}
+
+.wrapper .items li a {
+    display: block;
+    text-decoration: none;
+    background: white;
+    padding: 20px ;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.wrapper .items li a:hover {
+    background: #02383e;
+    color: white;
+}
+
+.wrapper .items li img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border: 0;
+}
+
+.category-banner {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    width: 100%;
+}
+@media print, screen and (min-width: 740px) {
+    .category-banner {
+        flex-direction: row;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 952px) {
+    .drug-header__title {
+        background-color: #262626;
+        background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
+        background-position: 50%;
+        background-size: 118%;
+    }
+}
+
+@media print, screen and (min-width: 740px) {
+    .drug-header__title {
+        background-color: #262626;
+        background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
+        background-position: top;
+        background-size: 170%;
+        border-radius: 0.25rem 0 0 0.25rem;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem 0.8125rem;
+        width: calc(100% - 18.75rem);
+    }
+}
+
+.drug-header__title {
+    background-color: #262626;
+    background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
+    background-position: bottom;
+    background-size: 125%;
+    border-radius: 0.25rem 0.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5625rem 1.25rem 0.8125rem;
+}
+.overlay__wrapper {
+    display: flex;
+}
+
+.media-picture img {
+    max-width: 400px;
+    height: auto;
+    display: block; /* Add this to remove any extra spacing below the image */
+    margin: 0 auto; /* Center the image horizontally */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent any overflow from being visible */
+}
+
+
+/* Style the form */
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Add spacing to elements */
+br {
+    clear: both;
+}
+
+/* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+.footer ul {margin: 0; padding: 0; float: left;}
+.footer ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+.footer ul li:after {content:" | "}
+.footer ul li:last-child:after {content:"";}
+.footer p {margin: 0; padding-right: 3px;}
+.footer a {text-decoration: none; color: #539def; margin: 0 10px;}
+.footer li:first-child a {margin-left: 4px;}
+.footer a:hover, .footer a:active {text-decoration: underline;}
+/* Style the navigation bar (you can customize this further) */
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
