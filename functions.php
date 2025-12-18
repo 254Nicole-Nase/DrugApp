@@ -1,30 +1,45 @@
 <?php 
-function get_item_html($id,$item){
-	$output = "<li><a href='details.php?id=$id'><img src='".$item["img"]."' alt ='".$item["title"]."'><p>View Details </p></a></li>";
-	return $output;
-}
-
-function get_category_html($id, $category) {
-    $output = "<li>";
-    $output .= "<a href='details.php?id=$id'>";
-    $output .= "<img src='" . $category["img"] . "' alt='" . $category["title"] . "'>";
-    $output .= "<h2>" . $category["title"] . "</h2>";
-    $output .= "</a>";
-    $output .= "</li>";
-
+/**
+ * Generate HTML for displaying an item in the catalog
+ */
+function get_item_html($id, $item) {
+    $output = "<li><a href='details.php?id=" . (int)$id . "'>";
+    $output .= "<img src='" . htmlspecialchars($item["img"]) . "' alt='" . htmlspecialchars($item["title"]) . "'>";
+    $output .= "<p>View Details</p></a></li>";
     return $output;
 }
 
+/**
+ * Generate HTML for displaying a category card
+ */
+function get_category_html($id, $category) {
+    $output = "<li>";
+    $output .= "<a href='details.php?id=" . (int)$id . "'>";
+    $output .= "<img src='" . htmlspecialchars($category["img"]) . "' alt='" . htmlspecialchars($category["title"]) . "'>";
+    $output .= "<h2>" . htmlspecialchars($category["title"]) . "</h2>";
+    $output .= "</a>";
+    $output .= "</li>";
+    return $output;
+}
 
-function array_category($catalog, $category){
+/**
+ * Filter catalog items by category
+ */
+function array_category($catalog, $category) {
     $output = array();
     
-    foreach($catalog as $id => $item){
+    foreach ($catalog as $id => $item) {
         if (isset($item["category"]) && strtolower($category) == strtolower($item["category"])) {
-             $output[] = $id;
+            $output[] = $id;
         }
     }
     return $output;
 }
 
+/**
+ * Format text for safe HTML output
+ */
+function safe_output($text) {
+    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+}
 ?>

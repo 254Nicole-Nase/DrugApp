@@ -1,306 +1,1005 @@
-/*some default styles for consistency */
-body,
-h1,
-h2,
-p,
-ul,
-li {
+/* ============================================
+   DRUG INFO CENTER - Modern UI Stylesheet
+   ============================================ */
+
+/* CSS Variables for consistent theming */
+:root {
+    /* Color Palette - Deep Medical Theme */
+    --primary: #0d9488;
+    --primary-dark: #0f766e;
+    --primary-light: #14b8a6;
+    --secondary: #1e293b;
+    --secondary-dark: #0f172a;
+    --accent: #f59e0b;
+    --accent-light: #fbbf24;
+    
+    /* Background Colors */
+    --bg-dark: #0f172a;
+    --bg-medium: #1e293b;
+    --bg-light: #334155;
+    --bg-card: #ffffff;
+    --bg-input: #f8fafc;
+    
+    /* Text Colors */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    /* Status Colors */
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --error: #ef4444;
+    --error-bg: #fee2e2;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* background color and font for the entire page */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1b4a42;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--secondary-dark) 50%, #0c4a6e 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
 }
 
+/* App Wrapper */
+.app-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
-/* navbar */
-/*.navbar {
-    background-color: #333;
-    color: #fff;
-    position: fixed;
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+.main-header {
+    background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--bg-medium) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md) var(--spacing-xl);
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    text-align: center;
-}*/
-
-.navbar ul {
-    list-style-type: none;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    text-align: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
-/*.navbar ul li {
-    display: inline;
-    margin-right: 20px;
-}*/
-
-/* navbar links */
-.navbar li a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 14px 16px;
-    text-align: center;
-    /*border-radius: 5px;
-    transition: background-color 0.3s ease;*/
-}
-
-.navbar li a:hover {
-    background-color: #2d6455;
-}
-
-/* "Logout" button  */
-.navbar ul li:last-child a {
-    background-color: #ff5555;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar ul li:last-child a:hover {
-    background-color: #dd3333;
-}
-
-.navbar ul li:last-child {
-    margin-right: 0;
-}
-
-/* header area */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 60px 0 20px;
-    text-align: center;
-}
-
-header h1 {
-    font-size: 36px;
-    margin: 0;
-}
-
-/* Active link style */
-.active {
-    background-color: #555;
-}
-
-/* page content container */
-.container {
-    max-width: 960px;
+.header-content {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.logo h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: -0.5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-full);
+    color: var(--text-light);
+}
+
+.user-avatar {
+    font-size: 1.25rem;
+}
+
+.user-name {
+    font-size: 0.875rem;
+}
+
+.user-name strong {
+    color: var(--primary-light);
+}
+
+/* ============================================
+   NAVIGATION STYLES
+   ============================================ */
+.main-nav {
+    background: var(--bg-medium);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0 var(--spacing-xl);
+}
+
+.nav-list {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xs);
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item a:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active a {
+    color: var(--primary-light);
+    border-bottom-color: var(--primary);
+    background: rgba(13, 148, 136, 0.1);
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+}
+
+.nav-logout a {
+    color: var(--error) !important;
+    margin-left: auto;
+}
+
+.nav-logout a:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.main-content {
+    flex: 1;
+    padding: var(--spacing-xl);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-2xl);
+    min-height: calc(100vh - 300px);
+}
+
+/* ============================================
+   DASHBOARD STYLES
+   ============================================ */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.dashboard-header h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Category Sections */
+.category {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.category-banner {
+    margin-bottom: var(--spacing-lg);
+}
+
+.drug-header__title {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.drug-header__title h2 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.category-icon {
+    font-size: 1.5rem;
+}
+
+/* Drug Items Grid */
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    list-style: none;
+}
+
+.drug-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid #e2e8f0;
+}
+
+.drug-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+}
+
+.drug-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.drug-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.drug-card:hover .drug-image img {
+    transform: scale(1.1);
+}
+
+.drug-info {
+    padding: var(--spacing-md);
+}
+
+.drug-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-md);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.drug-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.no-drugs {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--bg-light);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: var(--secondary);
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+}
+
+.btn-view:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, var(--error) 0%, #dc2626 100%);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #f87171 0%, var(--error) 100%);
+}
+
+.btn-block {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-header h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.75rem;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-header p {
+    color: var(--text-secondary);
+}
+
+.drug-form,
+.login-form,
+.password-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--secondary-dark);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.label-icon {
+    font-size: 1.1rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    transition: all var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.file-upload-wrapper {
+    border: 2px dashed #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    background: var(--bg-input);
+    transition: all var(--transition-fast);
+}
+
+.file-upload-wrapper:hover {
+    border-color: var(--primary);
+    background: rgba(13, 148, 136, 0.05);
+}
+
+.file-upload-wrapper input[type="file"] {
+    width: 100%;
+}
+
+.file-help {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: var(--spacing-sm);
+}
+
+.image-preview {
+    margin-top: var(--spacing-md);
+}
+
+.image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.current-image {
+    padding: var(--spacing-md);
+    background: var(--bg-input);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.current-image img {
+    max-width: 250px;
+    max-height: 200px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.form-actions .btn {
+    flex: 1;
+    padding: var(--spacing-md);
+    font-size: 1rem;
+}
+
+/* ============================================
+   LOGIN PAGE STYLES
+   ============================================ */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    padding: var(--spacing-xl);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-2xl);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.login-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.login-header h2 {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   ALERT STYLES
+   ============================================ */
+.alert {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+}
+
+.alert-icon {
+    font-size: 1.25rem;
+}
+
+.alert-success {
+    background: var(--success-bg);
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.alert-error {
+    background: var(--error-bg);
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.alert-warning {
+    background: var(--warning-bg);
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+/* ============================================
+   DRUG DETAILS PAGE STYLES
+   ============================================ */
+.details-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.drug-details-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.drug-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.back-btn {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: color var(--transition-fast);
+}
+
+.back-btn:hover {
+    color: var(--primary-dark);
+}
+
+.drug-actions-top {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.drug-details-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--spacing-2xl);
+}
+
+@media (max-width: 768px) {
+    .drug-details-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.drug-image-section {
+    display: flex;
+    justify-content: center;
+}
+
+.drug-image-wrapper {
+    width: 100%;
+    max-width: 350px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.drug-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.no-image {
+    padding: var(--spacing-2xl);
+    text-align: center;
+    background: var(--bg-input);
+    color: var(--text-muted);
+}
+
+.no-image span {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.drug-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.drug-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.drug-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.drug-description {
+    background: var(--bg-input);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+}
+
+.drug-description h3 {
+    font-size: 1rem;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.drug-description p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.back-link {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+/* ============================================
+   CATEGORIES PAGE STYLES
+   ============================================ */
 .wrapper {
     width: 100%;
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 20px;
-    flex-grow: 1;
 }
 
 .wrapper h1 {
-    font-size: 30px;
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem;
     text-align: center;
-    margin-top: 20px;
+    color: var(--secondary-dark);
+    margin-bottom: var(--spacing-2xl);
 }
 
 .wrapper .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
     list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .wrapper .items li {
-    width: calc(33.33% - 20px);
-    margin: 0 0 20px;
-    padding: 0;
-    text-align: center;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.wrapper .items li:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
 }
 
 .wrapper .items li a {
     display: block;
     text-decoration: none;
-    background: white;
-    padding: 20px ;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: all 0.3s ease-in-out;
-}
-
-.wrapper .items li a:hover {
-    background: #02383e;
-    color: white;
+    color: var(--text-primary);
 }
 
 .wrapper .items li img {
     width: 100%;
-    max-width: 150px;
-    height: auto;
-    border: 0;
+    height: 160px;
+    object-fit: cover;
 }
 
-.category-banner {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    position: relative;
-    width: 100%;
-}
-@media print, screen and (min-width: 740px) {
-    .category-banner {
-        flex-direction: row;
-        margin-bottom: 2.5rem;
-    }
-}
-
-@media screen and (min-width: 952px) {
-    .drug-header__title {
-        background-color: #262626;
-        background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
-        background-position: 50%;
-        background-size: 118%;
-    }
-}
-
-@media print, screen and (min-width: 740px) {
-    .drug-header__title {
-        background-color: #262626;
-        background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
-        background-position: top;
-        background-size: 170%;
-        border-radius: 0.25rem 0 0 0.25rem;
-        justify-content: space-between;
-        padding: 0.75rem 1.25rem 0.8125rem;
-        width: calc(100% - 18.75rem);
-    }
-}
-
-.drug-header__title {
-    background-color: #262626;
-    background-image: url(https://cdn.adf.org.au/static/dist/img/ADF_Pattern_Repeat_Dark_Gray.89b66f84.png);
-    background-position: bottom;
-    background-size: 125%;
-    border-radius: 0.25rem 0.25rem 0 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0.5625rem 1.25rem 0.8125rem;
-}
-.overlay__wrapper {
-    display: flex;
-}
-
-.media-picture img {
-    max-width: 400px;
-    height: auto;
-    display: block; /* Add this to remove any extra spacing below the image */
-    margin: 0 auto; /* Center the image horizontally */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevent any overflow from being visible */
-}
-
-
-/* Style the form */
-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-input[type="text"],
-select,
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-input[type="submit"] {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #555;
-}
-
-/* Add spacing to elements */
-br {
-    clear: both;
-}
-
-/* Style the footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+.wrapper .items li h2 {
+    padding: var(--spacing-md);
+    font-size: 1rem;
     text-align: center;
-}
-.footer ul {margin: 0; padding: 0; float: left;}
-.footer ul li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: inline-block;
-}
-.footer ul li:after {content:" | "}
-.footer ul li:last-child:after {content:"";}
-.footer p {margin: 0; padding-right: 3px;}
-.footer a {text-decoration: none; color: #539def; margin: 0 10px;}
-.footer li:first-child a {margin-left: 4px;}
-.footer a:hover, .footer a:active {text-decoration: underline;}
-/* Style the navigation bar (you can customize this further) */
-nav {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
 }
 
-nav ul {
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+.main-footer {
+    background: var(--secondary-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.footer-left p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-lg);
     list-style: none;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
+.social-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color var(--transition-fast);
 }
 
-nav ul li:last-child {
-    margin-right: 0;
+.social-links a:hover {
+    color: var(--primary-light);
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .main-header {
+        padding: var(--spacing-md);
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .main-nav {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-item a {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.8rem;
+    }
+    
+    .nav-text {
+        display: none;
+    }
+    
+    .nav-icon {
+        font-size: 1.25rem;
+    }
+    
+    .main-content {
+        padding: var(--spacing-md);
+    }
+    
+    .container {
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-lg);
+    }
+    
+    .items {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .drug-details-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-input);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+/* Focus Styling for Accessibility */
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .main-nav,
+    .main-footer,
+    .btn-edit,
+    .btn-delete,
+    .drug-actions {
+        display: none !important;
+    }
+    
+    .container {
+        box-shadow: none;
+        padding: 0;
+    }
 }

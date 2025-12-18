@@ -1,0 +1,25 @@
+# Test and setup files (don't commit to public repo)
+quick_test.php
+test_connection.php
+setup_database.bat
+start_server.bat
+
+# Firebase credentials (NEVER commit this!)
+firebase-credentials.json
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Query/temp files
+query
+
+# Uploaded images (optional - uncomment if you don't want to track uploads)
+# img/drug_*.webp
+# img/drug_*.jpg
+# img/drug_*.png
+

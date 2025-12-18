@@ -4,59 +4,82 @@ $section = null;
 
 include 'header.php';
 
-//session_start();
-
 // Check if the user is already logged in; if so, redirect to the dashboard
 if (isset($_SESSION['admin_id'])) {
     header("Location: dashboard.php");
     exit;
 }
 
+$login_error = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once("db_connection.php"); 
     
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = sanitize_input($_POST['username']);
+    $password = $_POST['password']; // Don't sanitize password before verification
 
-    // SQL query to check administrator credentials
-    $query = "SELECT admin_id, username FROM administrators WHERE username = ? AND password = ?";
+    // SQL query to check administrator credentials (using prepared statement)
+    $query = "SELECT admin_id, username, password FROM administrators WHERE username = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($admin_id, $admin_username);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    $admin = $result->fetch_assoc();
     $stmt->close();
 
-    // Check if the query returned a matching administrator
-    if ($admin_id) {
+    // Check if user exists and verify password
+    if ($admin && password_verify($password, $admin['password'])) {
         // Store administrator data in session
-        $_SESSION['admin_id'] = $admin_id;
-        $_SESSION['admin_username'] = $admin_username;
-
+        $_SESSION['admin_id'] = $admin['admin_id'];
+        $_SESSION['admin_username'] = $admin['username'];
+        
+        set_flash_message('success', 'Welcome back, ' . $admin['username'] . '!');
         header("Location: dashboard.php");
         exit;
     } else {
         // Display an error message if login fails
         $login_error = "Invalid username or password";
     }
+    
+    $conn->close();
 }
-
 ?>
 
-    <h2>Administrator Login</h2>
-    <form method="post" action="">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
-        <input type="submit" value="Login">
-    </form>
-    <?php
-    // Display login error message
-    if (isset($login_error)) {
-        echo '<p style="color: red;">' . $login_error . '</p>';
-    }
-    ?>
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-header">
+            <div class="login-icon">🔐</div>
+            <h2>Administrator Login</h2>
+            <p>Enter your credentials to access the dashboard</p>
+        </div>
+        
+        <?php if (isset($login_error)): ?>
+            <div class="alert alert-error">
+                <span class="alert-icon">⚠️</span>
+                <?php echo $login_error; ?>
+            </div>
+        <?php endif; ?>
+        
+        <form method="post" action="" class="login-form">
+            <div class="form-group">
+                <label for="username">
+                    <span class="label-icon">👤</span> Username
+                </label>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">
+                    <span class="label-icon">🔑</span> Password
+                </label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+                Sign In
+            </button>
+        </form>
     </div>
+</div>
 
-    <?php include 'footer.php';?>
+<?php include 'footer.php';?>
