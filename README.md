@@ -6,6 +6,30 @@ A PHP web application for managing and displaying information about different dr
 ![MySQL](https://img.shields.io/badge/MySQL-8.x-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+## 📸 Screenshots
+
+### Login Page
+Secure administrator login with password hashing.
+
+![Login Page](screenshots/login.jpeg)
+
+### Dashboard
+View all drugs organized by category with edit/delete options.
+
+![Dashboard](screenshots/dashboard.png)
+
+### Drug Categories
+Browse all drug categories with drug counts.
+
+![Categories](screenshots/categories.jpeg)
+
+### Add Drug Form
+Easy-to-use form with image upload and category selection.
+
+![Add Drug Form](screenshots/add-drug-form.jpeg)
+
+---
+
 ## ✨ Features
 
 - **🔐 Secure Authentication** - Password hashing with PHP's `password_hash()`
@@ -31,9 +55,10 @@ A PHP web application for managing and displaying information about different dr
    cd DrugApp
    ```
 
-2. **Set up the database**
+2. **Create the database**
    ```bash
-   mysql -u root -p < db/drug_app.sql
+   mysql -u root -p -e "CREATE DATABASE drug_app;"
+   mysql -u root -p drug_app < db/drug_app.sql
    ```
 
 3. **Configure database connection**
@@ -69,6 +94,7 @@ DrugApp/
 ├── db/
 │   └── drug_app.sql       # Database schema & seed data
 ├── img/                   # Drug images
+├── screenshots/           # README screenshots
 ├── index.php              # Login page
 ├── dashboard.php          # Main dashboard
 ├── addDrug.php            # Add new drug form
@@ -108,17 +134,6 @@ DrugApp/
 - ✅ Input sanitization (XSS prevention)
 - ✅ Session-based authentication
 - ✅ File upload validation
-
-## 📸 Screenshots
-
-### Login Page
-Modern login interface with secure authentication.
-
-### Dashboard
-Grid view of all drugs organized by category with edit/delete options.
-
-### Add Drug Form
-Easy-to-use form with image preview and category selection.
 
 ## 🛠️ Technologies Used
 
